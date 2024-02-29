@@ -40,7 +40,7 @@
                         <?php endif ?>
 
                         <!-- Table with stripped rows -->
-                        <table class="table">
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -61,10 +61,12 @@
                                         <td>
 
                                             <a href="<?= site_url('edit-kategori/' . $row['id_kategori']); ?>" class="ri ri-edit-box-fill btn btn-outline-primary"></a>
-                                            <form action="/kategori/<?= $row['id_kategori']; ?>" method="POST" class="d-inline">
+                                            <form action="/kategori/<?= $row['id_kategori']; ?>" 
+                                            method="POST" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="ri ri-delete-bin-5-fill btn btn-outline-primary" onclick=" return confirm ('Apakah anda yakin?');"id="hapusKategori" data-id="<?= $row['id_kategori']; ?>"><i class="far fa-trash-alt"></i></button>
+                                                <button type="submit" class="ri ri-delete-bin-5-fill btn btn-outline-primary" onclick=" return confirm ('Apakah anda yakin?');"id="hapusKategori" 
+                                                data-id="<?= $row['id_kategori']; ?>"><i class="far fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>

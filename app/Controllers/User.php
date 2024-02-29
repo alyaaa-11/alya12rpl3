@@ -11,7 +11,8 @@ class User extends BaseController
     {
         $data = [
             'pendapatan_harian' => $this->penjualan->getPendapatanHarian(),
-            'akses' => session()->get('level')
+            'akses' => session()->get('level'),
+            'dataStok' =>  $this->produk->getStokNol()
         ];
         return view('dashboard-admin', $data);
     }
@@ -40,29 +41,51 @@ class User extends BaseController
 
     public function registrasi()
     {
-        $validasiForm = [
+        $validation = \Config\Services::validation();
+
+        $rules = [
             'nama' => 'required',
-            'username' => 'required',
+            'username' => 'required|is_unique[tbl_user.username]',
             'password' => 'required',
-            'level' => 'required'
+            'level' => 'required' 
         ];
 
-        //ini menandakan apakah tombol registrasi diklik
-        if ($this->validate($validasiForm)) {
-            //menampung data dari form registrasi
-            $dataUser = [
-                'nama_user' => $this->request->getPost('nama'),
-                'username' => $this->request->getPost('username'),
-                'password' => $this->request->getPost('password'),
-                'level' => $this->request->getPost('level')
-            ];
+        $messages = [
+            'nama' => [
+                'required' => 'Tidak boleh kosong!',
+                'is_unique' => 'Username sudah digunakan! Harap coba lagi.'
+            ],
+            'username' => [
+                'required' => 'Tidak boleh kosong!'
+            ],
+            'password' => [
+                'required' => 'Tidak boleh kosong!'
+            ],
+            'level' => [
+                'required' => 'Tidak boleh kosong!'
+            ]
+        ];
 
-            //menyimpan ke mysql tabel user
-            $this->user->insert($dataUser);
-            // jika berhasil simpan diarahkan ke halaman dashboard
-            return redirect()->to('/data-user')->with('info', '<span class="alert alert-success alert-dismissible fade show">Registrasi berhasil</span>');
+        // set validasi
+        $validation->setRules($rules, $messages);
+
+        // cek validasi gagal
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
-        return view('user/registrasi');
+
+        //menampung data dari form registrasi
+        $dataUser = [
+            'nama_user' => $this->request->getPost('nama'),
+            'username' => $this->request->getPost('username'),
+            'password' => $this->request->getPost('password'),
+            'level' => $this->request->getPost('level')
+        ];
+
+        //menyimpan ke mysql tabel user
+        $this->user->insert($dataUser);
+        // jika berhasil simpan diarahkan ke halaman data user
+        return redirect()->to('/data-user')->with('info', '<span class="alert alert-success alert-dismissible fade show">Registrasi berhasil</span>');
     }
 
     public function login()
@@ -108,7 +131,6 @@ class User extends BaseController
                 // jika tidak ditemukan data apapun
                 return redirect()->to('/login')->with('pesan', '<p class="text-danger text-center">Username atau Password Salah.</p>');
             }
-
         }
         return view('user/login');
     }
@@ -125,15 +147,15 @@ class User extends BaseController
 
     public function simpanUser()
     {
-       $data = [
-        'nama_user' => $this->request->getVar('txtNama_user'),
-        'username' => $this->request->getVar('txtUsername'),
-        'password' => $this->request->getVar('txtPassword'),
-        'level' => $this->request->getVar('txtLevel')
-       ];
+        $data = [
+            'nama_user' => $this->request->getVar('txtNama_user'),
+            'username' => $this->request->getVar('txtUsername'),
+            'password' => $this->request->getVar('txtPassword'),
+            'level' => $this->request->getVar('txtLevel')
+        ];
 
-       $this->user->update($this->request->getVar('id'), $data);
-       return redirect()->to('data-user')->with('pesan', 'Data telah diubah');
+        $this->user->update($this->request->getVar('id'), $data);
+        return redirect()->to('data-user')->with('pesan', 'Data telah diubah');
     }
 
     public function delete($id)
@@ -158,7 +180,4 @@ class User extends BaseController
     {
         return view('user/registrasi');
     }
-
-   
 }
-

@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use Dompdf\Dompdf;
 use App\Models\Mproduk;
+use App\Models\Mpenjualan;
 
 class PdfController extends BaseController
 {
@@ -17,27 +18,67 @@ class PdfController extends BaseController
         return view('laporan/pdf', $data);
     }
 
+    public function pdfpenjualan()
+    {
+        $data =[
+            'listPenjualan'=>$this->penjualan->getPdfPenjualan()
+        ];
+        return view('laporan/pdf-penjualan', $data);
+    }
+
     public function generate()
     {
-        $filename = date('y-m-d-h-i-s'). '-qadr-labs-report';
-
+       
         // instantiate and use the dompdf class
         $dompdf = new Dompdf();
 
-        // load HTML content
+        // Load library Dompdf
         $data =[
-            'listProduk'=>$this->produk->getLaporanProduk()
+            'listProduk'=>$this->produk->getLaporanProduk(),
+            'listProduk'=>$this->produk->getAllProduk(),
+            
         ];
         $html = view('laporan/pdf', $data);
         $dompdf->loadHtml($html);
 
-        // (optimal) setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        // Convert HTML ke PDF
+        $dompdf->loadHtml($html);
 
-        // render html as pdf
+        // Setting ukuran dan orientasi kertas
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF ke browser
         $dompdf->render();
 
-        // output the generate pdf
-        $dompdf->stream($filename);
+        // Tampilkan PDF dalam browser
+        $dompdf->stream('laporan-stok', ['Attachment' => true]);
+    }
+
+    public function generatePenjualan()
+    {
+
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // Load library Dompdf
+        $data =[
+            'listPenjualan'=>$this->penjualan->getPdfPenjualan(),
+            
+        ];
+        $html = view('laporan/pdf-penjualan', $data);
+        $dompdf->loadHtml($html);
+
+        // Convert HTML ke PDF
+        $dompdf->loadHtml($html);
+
+        // Setting ukuran dan orientasi kertas
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render PDF ke browser
+        $dompdf->render();
+
+        // Tampilkan PDF dalam browser
+        $dompdf->stream('pdf-laporan', ['Attachment' => true]);
     }
 }

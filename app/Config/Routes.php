@@ -16,7 +16,7 @@ $routes->get('/logout', 'User::logout');
 
 // dashboard
 $routes->get('/dashboard-admin', 'User::dashboardAdmin', ['filter' => 'otentifikasi']);
-$routes->get('/dashboard', 'User::dashboard', ['filter' => 'otentifikasi']);
+$routes->get('/dashboard', 'User::dashboard');
 $routes->get('/dashboard-admin', 'User::dashboardAdmin');
 
 // user
@@ -67,6 +67,9 @@ $routes->get('/pembayaran','Penjualan::simpanPembayaran');
 
 // laporan
 $routes->get('/laporan', 'Laporan::dataLaporan');
-$routes->get('/lapPenjualan', 'Laporan::dataLaporan');
-$routes->get('/pdf', 'PdfController::index');
 $routes->get('/pdf/generate', 'PdfController::generate');
+$routes->get('/pdf/generate/(:num)', 'PdfController::generate$1');
+
+$routes->get('/laporanPenjualan', 'Laporan::dataPenjualan');
+$routes->get('/pdf/generate-penjualan', 'PdfController::generatePenjualan');
+$routes->get('/pdf/generate-penjualan/(:num)', 'PdfController::generatePenjualan$1');

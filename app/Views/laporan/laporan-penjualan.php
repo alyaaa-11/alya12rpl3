@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <div class="row mt-3">
                             <div class="col-md-2">
-                                <a class="btn btn-danger" aria-current="true" href="<?= site_url('') ?>">
+                                <a class="btn btn-danger" aria-current="true" href="<?= site_url('pdf/generate-penjualan') ?>">
 
                                     <span class="icon text-white-50">
                                         <i class="fas fa-plus-circle"></i>
@@ -36,30 +36,26 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Produk</th>
-                                    <th>Harga Beli</th>
-                                    <th>Harga Jual</th>
-                                    <th>Stok</th>
+                                    <th>No Faktur</th>
+                                    <th>Tanggal Penjualan</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($listLaporan as $row) : ?>
+                                <?php foreach ($dataPenjualan as $row) : ?>
                                     <tr>
                                         <td>
                                             <?= $no++ ?>
                                         </td>
                                         <td>
-                                            <?= $row['nama_produk']; ?>
+                                            <?= $row['no_faktur']; ?>
                                         </td>
                                         <td>
-                                            <?= $row['harga_beli']; ?>
+                                            <?= $row['tgl_penjualan']; ?>
                                         </td>
                                         <td>
-                                            <?= $row['harga_jual']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $row['stok']; ?>
+                                            <?= $row['total']; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

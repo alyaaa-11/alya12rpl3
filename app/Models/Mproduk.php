@@ -81,16 +81,26 @@ class Mproduk extends Model
         return $produk->findAll();
     }
 
-    public function getLaporanproduk(){
-        $produk = NEW Mproduk;
-        $queryProduk=$produk->query("CALL lihat_laporan()")->getResult();
+    public function getLaporanproduk()
+    {
+        $produk = new Mproduk;
+        $queryProduk = $produk->query("CALL lihat_laporan()")->getResult();
         return $queryProduk;
     }
 
-    public function getAllProduk(){
-        $produk= NEW MProduk;
-        $queryproduk=$produk->query("CALL lihat_produk()")->getResult();
+    public function getAllProduk()
+    {
+        $produk = new MProduk;
+        $queryproduk = $produk->query("CALL lihat_produk()")->getResult();
         return $queryproduk;
-        }
-        
+    }
+
+    public function getStokNol()
+    {
+        $produk = new Mproduk();
+        $produk->select('tbl_produk.kode_produk, tbl_produk.id_produk, tbl_produk.nama_produk, tbl_produk.harga_beli, tbl_produk.harga_jual, tbl_produk.stok');
+        $produk->where('tbl_produk.stok = 0');
+        return $produk->findAll();
+
+    }
 }

@@ -43,7 +43,7 @@
                         <?php endif ?>
 
                         <!-- Table with stripped rows -->
-                        <table class="table">
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>

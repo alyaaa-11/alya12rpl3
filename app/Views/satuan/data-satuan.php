@@ -41,11 +41,9 @@
                                 </div>
                             <?php endif ?>
 
-                            <!-- <h1 class="card-title">Data Kategori Produk</h1>
-                        <p>Dibawah ini adalah data Kategori Produk.</p> -->
 
                             <!-- Table with stripped rows -->
-                            <table class="table">
+                            <table class="table datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>

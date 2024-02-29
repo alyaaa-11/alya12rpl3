@@ -11,13 +11,22 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Kategori Produk</h5>
+                        <?php if (session()->getFlashdata('errors')) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-octagon me-1"></i>
+                                <?php foreach (session('errors') as $error) : ?>
+                                    <?= $error; ?>
+                                <?php endforeach; ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
 
                         <!-- Floating Labels Form -->
                         <form class="row g-3" action="<?= site_url('simpan-kategori'); ?>" method="POST">
                             <?= csrf_field(); ?>
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text"  name="txtNamaKategori" class="form-control" id="floatingName" placeholder="Your Name">
+                                    <input type="text" name="txtNamaKategori" class="form-control" id="floatingName" placeholder="Your Name">
                                     <label for="floatingName">Nama Kategori</label>
                                 </div>
                             </div>

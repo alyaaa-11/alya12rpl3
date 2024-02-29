@@ -11,6 +11,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Satuan Produk</h5>
+                        <?php if (session()->getFlashdata('errors')) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-octagon me-1"></i>
+                                <?php foreach (session('errors') as $error) : ?>
+                                    <?= $error; ?>
+                                <?php endforeach; ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif ?>
 
                         <!-- Floating Labels Form -->
                         <form class="row g-3" action="<?= site_url('simpan-satuan'); ?>" method="POST">

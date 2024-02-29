@@ -5,7 +5,7 @@
 
   <?php if (session()->get('level') == 'admin') : ?>
     <li class="nav-item">
-      <a class="nav-link " href="<?= site_url('dashboard-admin'); ?>">
+      <a class="nav-link collapsed " href="<?= site_url('dashboard-admin'); ?>">
         <i class="bi bi-speedometer2"></i>
         <span>Dashboard</span>
       </a>
@@ -14,7 +14,7 @@
 
     <?php if (session()->get('level') == 'kasir') : ?>
     <li class="nav-item">
-      <a class="nav-link " href="<?= site_url('dashboard'); ?>">
+      <a class="nav-link collapsed" href="<?= site_url('dashboard'); ?>">
         <i class="bi bi-speedometer2"></i>
         <span>Dashboard</span>
       </a>
@@ -65,11 +65,11 @@
 
     <!-- End Master Data  -->
 
-    <?php if (session()->get('level') == 'kasir') : ?>
+    <?php if (session()->get('level') == 'admin') : ?>
     <li class="nav-heading">Transaksi</li>
     <?php endif; ?>
 
-    <?php if (session()->get('level') == 'kasir') : ?>
+    <?php if (session()->get('level') == 'admin') : ?>
     <li class="nav-item">
       <a class="nav-link collapsed" href="<?= base_url('transaksi-penjualan'); ?>">
         <i class="bi bi-cart"></i>
@@ -93,8 +93,8 @@
 
     <?php if (session()->get('level') == 'admin') : ?>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="<?= site_url('lapPenjualan'); ?>">
-        <i class="bi bi-shop-window"></i>
+      <a class="nav-link collapsed" href="<?= site_url('laporanPenjualan'); ?>">
+        <i class="bi bi-clipboard2-data"></i>
         <span>Laporan Penjualan </span>
       </a>
     </li>

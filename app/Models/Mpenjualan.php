@@ -13,7 +13,7 @@ class Mpenjualan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_penjualan','no_faktur','tgl_penjualan','total','id_user'];
+    protected $allowedFields    = ['id_penjualan', 'no_faktur', 'tgl_penjualan', 'total', 'id_user'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,23 +39,6 @@ class Mpenjualan extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-
-    public function generateNoFaktur()
-    {
-        $prefix = 'PJLN';
-        $lastFaktur = $this->orderBy('id_penjualan', 'DESC')->first();
-
-        if (!$lastFaktur) {
-            $code = $prefix . '001';
-        } else {
-            $lastCode = substr($lastFaktur['no_faktur'], strlen($prefix));
-            $nextCode = str_pad($lastCode + 1, 3, '0', STR_PAD_LEFT);
-            $code = $prefix . $nextCode;
-        }
-
-        return $code;
-    }
-
     public function getPenjualan()
     {
         $produk = new Mproduk();
@@ -69,6 +52,15 @@ class Mpenjualan extends Model
     {
         $today = date('Y-m-d');
         return $this->where('DATE(tgl_penjualan)', $today)->select('SUM(total) AS pendapatan_harian')->get()->getRow()->pendapatan_harian;
+    }
+
+    public function totalPendapatanBulaniIni(){
+        $penjualan = NEW Mpenjualan;
+        $penjualan->select('sum(TotalHarga) as TotalPendapatan');
+        $penjualan->groupby('TanggalPenjualan');
+        $penjualan->where('Year(TanggalPenjualan)',date('Y'));
+        $penjualan->where('Month(TanggalPenjualan)',date('m'));
+        return $penjualan->findAll();
     }
 
     public function generateTransactionNumber()
@@ -104,5 +96,21 @@ class Mpenjualan extends Model
             // Jika hasil kueri kosong, kembalikan nilai default, misalnya 0
             return 0;
         }
+    }
+
+    public function getLaporanPenjualan()
+    {
+        $penjualan = new Mpenjualan();
+        $penjualan->select('tbl_penjualan.*');
+        $penjualan->orderBy('tbl_penjualan.tgl_penjualan', 'DESC');
+
+        return $penjualan->findAll();
+    }
+
+    public function getPdfPenjualan()
+    {
+        $penjualan = new Mpenjualan;
+        $queryPenjualan = $penjualan->query("CALL sp_lihat_laporan_penjualan()")->getResult();
+        return $queryPenjualan;
     }
 }

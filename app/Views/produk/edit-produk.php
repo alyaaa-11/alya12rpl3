@@ -24,16 +24,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" value="<?= $produk['nama_produk']; ?>">
-                                    <input type="hidden" id="txtnamaproduk" name="txtnamaproduk" value="<?= $produk['nama_produk']; ?>">
-
+                                    <input type="text" id="txtnamaproduk" class="form-control" name="txtnamaproduk" value="<?= $produk['nama_produk']; ?>">
                                     <label for="namaProduk">Nama Produk</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="text" id="txthargabeli" class="form-control uang" name="txthargabeli" value="<?= $produk['harga_beli']; ?>">
-
                                     <label for="hargaBeli">Harga Beli</label>
                                 </div>
                             </div>

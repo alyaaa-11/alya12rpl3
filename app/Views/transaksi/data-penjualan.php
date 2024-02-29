@@ -24,13 +24,23 @@
               </div>
               <div class="col-md-3">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingName" name="tanggal" value="<?php echo date("d-m-Y"); ?>" disabled>
+                  <input type="text" class="form-control" id="floatingName" name="" value="<?php 
+                      date_default_timezone_set('Asia/Jakarta');
+                      echo date(" Y-m-d "); ?>" disabled>
+                  <input type="hidden" class="form-control" id="floatingName" name="" value="<?php 
+                      date_default_timezone_set('Asia/Jakarta');
+                      echo date(" Y-m-d "); ?>">
                   <label for="floatingName">Tanggal</label>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingName" name="waktu" value="<?php echo date("h:i:sa"); ?>" disabled>
+                  <input type="text" class="form-control" id="floatingName" name="waktu" value="<?php 
+                      date_default_timezone_set('Asia/Jakarta');
+                      echo date(" H:i:s "); ?>"disabled>
+                  <input type="hidden" class="form-control" id="floatingName" name="waktu" value="<?php 
+                      date_default_timezone_set('Asia/Jakarta');
+                      echo date(" H:i:s "); ?>">
                   <label for="floatingName">Waktu</label>
                 </div>
               </div>
