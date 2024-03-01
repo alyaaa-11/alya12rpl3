@@ -5,7 +5,7 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Dashboard admin</h1>
+    <h1>Selamat Datang...</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -36,24 +36,7 @@
           </div>
           <!-- end card pendapatan hari ini-->
 
-          <!-- card penjualan bulan ini -->
-          <div class="col-xxl-5 col-md-6">
-            <div class="card info-card revenue-card">
-              <div class="card-body">
-                <h5 class="card-title">Pendapatan Bulan ini</h5>
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-currency-dollar"></i>
-                  </div>
-                  <div class="ps-2">
-                    <h6>Rp.<?php echo number_format($pendapatan_harian, 0, ',', '.'); ?></h6>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <!-- End penjualan bulan ini Card -->
+          
 
           <!-- Top Selling -->
           <div class="col-12">

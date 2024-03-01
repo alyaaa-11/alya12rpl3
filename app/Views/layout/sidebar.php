@@ -14,7 +14,7 @@
 
     <?php if (session()->get('level') == 'kasir') : ?>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="<?= site_url('dashboard'); ?>">
+      <a class="nav-link collapsed" href="<?= site_url('dashboard-admin'); ?>">
         <i class="bi bi-speedometer2"></i>
         <span>Dashboard</span>
       </a>
@@ -65,11 +65,11 @@
 
     <!-- End Master Data  -->
 
-    <?php if (session()->get('level') == 'admin') : ?>
+    <?php if (session()->get('level') == 'kasir') : ?>
     <li class="nav-heading">Transaksi</li>
     <?php endif; ?>
 
-    <?php if (session()->get('level') == 'admin') : ?>
+    <?php if (session()->get('level') == 'kasir') : ?>
     <li class="nav-item">
       <a class="nav-link collapsed" href="<?= base_url('transaksi-penjualan'); ?>">
         <i class="bi bi-cart"></i>

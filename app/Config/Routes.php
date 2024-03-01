@@ -16,7 +16,6 @@ $routes->get('/logout', 'User::logout');
 
 // dashboard
 $routes->get('/dashboard-admin', 'User::dashboardAdmin', ['filter' => 'otentifikasi']);
-$routes->get('/dashboard', 'User::dashboard');
 $routes->get('/dashboard-admin', 'User::dashboardAdmin');
 
 // user

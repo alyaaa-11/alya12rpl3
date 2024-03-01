@@ -24,23 +24,23 @@
               </div>
               <div class="col-md-3">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingName" name="" value="<?php 
-                      date_default_timezone_set('Asia/Jakarta');
-                      echo date(" Y-m-d "); ?>" disabled>
-                  <input type="hidden" class="form-control" id="floatingName" name="" value="<?php 
-                      date_default_timezone_set('Asia/Jakarta');
-                      echo date(" Y-m-d "); ?>">
+                  <input type="text" class="form-control" id="floatingName" name="" value="<?php
+                                                                                            date_default_timezone_set('Asia/Jakarta');
+                                                                                            echo date(" Y-m-d "); ?>" disabled>
+                  <input type="hidden" class="form-control" id="floatingName" name="" value="<?php
+                                                                                              date_default_timezone_set('Asia/Jakarta');
+                                                                                              echo date(" Y-m-d "); ?>">
                   <label for="floatingName">Tanggal</label>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingName" name="waktu" value="<?php 
-                      date_default_timezone_set('Asia/Jakarta');
-                      echo date(" H:i:s "); ?>"disabled>
-                  <input type="hidden" class="form-control" id="floatingName" name="waktu" value="<?php 
-                      date_default_timezone_set('Asia/Jakarta');
-                      echo date(" H:i:s "); ?>">
+                  <input type="text" class="form-control" id="floatingName" name="waktu" value="<?php
+                                                                                                date_default_timezone_set('Asia/Jakarta');
+                                                                                                echo date(" H:i:s "); ?>" disabled>
+                  <input type="hidden" class="form-control" id="floatingName" name="waktu" value="<?php
+                                                                                                  date_default_timezone_set('Asia/Jakarta');
+                                                                                                  echo date(" H:i:s "); ?>">
                   <label for="floatingName">Waktu</label>
                 </div>
               </div>
@@ -146,10 +146,8 @@
                 </div>
               </div>
               <div class="card-footer text-end">
-                <a href="<?= site_url('pembayaran') ?>" class="btn btn-primary">
-                  SIMPAN
-                </a>
-
+                <button id="btnBayar" type="submit" class="btn btn-primary" on click="redirectToRoute()">Bayar</button>
+               
               </div>
 
             </div>
@@ -163,12 +161,20 @@
 </main><!-- End #main -->
 
 <script>
+  function redirectToRoute() {
+    window.location.href = '<?= site_url('pembayaran') ?>';
+  }
+</script>
+
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     // Ambil elemen-elemen yang diperlukan
     var txtBayar = document.getElementById('txtbayar');
+    var btnBayar = document.getElementById('btnBayar');
     var kembali = document.getElementById('kembali');
     var totalHarga = <?= $totalHarga ?>; // Ambil total harga dari controller dan diteruskan ke view
 
+    btnBayar.disabled = true;
     // Tambahkan event listener untuk memantau perubahan pada input bayar
     txtBayar.addEventListener('input', function() {
       // Ambil nilai yang dibayarkan
@@ -180,8 +186,10 @@
       // Tampilkan kembaliannya pada input kembali
       if (kembalian >= 0) {
         kembali.value = kembalian.toFixed(2).replace(/(\.00)+$/, ''); // Menampilkan hingga 2 digit desimal
+        btnBayar.disabled = false;
       } else {
         kembali.value = '0'; // Jika kembalian negatif, tampilkan '0.00'
+        btnBayar.disabled = true;
       }
     });
   });

@@ -79,6 +79,6 @@ class PdfController extends BaseController
         $dompdf->render();
 
         // Tampilkan PDF dalam browser
-        $dompdf->stream('pdf-laporan', ['Attachment' => true]);
+        $dompdf->stream('laporan-penjualan', ['Attachment' => true]);
     }
 }

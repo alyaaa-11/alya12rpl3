@@ -17,14 +17,6 @@ class User extends BaseController
         return view('dashboard-admin', $data);
     }
 
-    public function dashboard()
-    {
-        $data = [
-            'akses' => session()->get('level')
-        ];
-        return view('dashboard', $data);
-    }
-
     public function dataUser()
     {
         $session = session();
