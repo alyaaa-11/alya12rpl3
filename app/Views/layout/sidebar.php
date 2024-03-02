@@ -91,14 +91,7 @@
     </li>
     <?php endif; ?>
 
-    <?php if (session()->get('level') == 'admin') : ?>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="<?= site_url('laporanPenjualan'); ?>">
-        <i class="bi bi-clipboard2-data"></i>
-        <span>Laporan Penjualan </span>
-      </a>
-    </li>
-    <?php endif; ?>
+    
 
   </ul>
 

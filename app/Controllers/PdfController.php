@@ -18,13 +18,13 @@ class PdfController extends BaseController
         return view('laporan/pdf', $data);
     }
 
-    public function pdfpenjualan()
-    {
-        $data =[
-            'listPenjualan'=>$this->penjualan->getPdfPenjualan()
-        ];
-        return view('laporan/pdf-penjualan', $data);
-    }
+    // public function pdfpenjualan()
+    // {
+    //     $data =[
+    //         'listPenjualan'=>$this->penjualan->getPdfPenjualan()
+    //     ];
+    //     return view('laporan/pdf-penjualan', $data);
+    // }
 
     public function generate()
     {
@@ -54,31 +54,31 @@ class PdfController extends BaseController
         $dompdf->stream('laporan-stok', ['Attachment' => true]);
     }
 
-    public function generatePenjualan()
-    {
+    // public function generatePenjualan()
+    // {
 
 
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
+    //     // instantiate and use the dompdf class
+    //     $dompdf = new Dompdf();
 
-        // Load library Dompdf
-        $data =[
-            'listPenjualan'=>$this->penjualan->getPdfPenjualan(),
+    //     // Load library Dompdf
+    //     $data =[
+    //         'listPenjualan'=>$this->penjualan->getPdfPenjualan(),
             
-        ];
-        $html = view('laporan/pdf-penjualan', $data);
-        $dompdf->loadHtml($html);
+    //     ];
+    //     $html = view('laporan/pdf-penjualan', $data);
+    //     $dompdf->loadHtml($html);
 
-        // Convert HTML ke PDF
-        $dompdf->loadHtml($html);
+    //     // Convert HTML ke PDF
+    //     $dompdf->loadHtml($html);
 
-        // Setting ukuran dan orientasi kertas
-        $dompdf->setPaper('A4', 'portrait');
+    //     // Setting ukuran dan orientasi kertas
+    //     $dompdf->setPaper('A4', 'portrait');
 
-        // Render PDF ke browser
-        $dompdf->render();
+    //     // Render PDF ke browser
+    //     $dompdf->render();
 
-        // Tampilkan PDF dalam browser
-        $dompdf->stream('laporan-penjualan', ['Attachment' => true]);
-    }
+    //     // Tampilkan PDF dalam browser
+    //     $dompdf->stream('laporan-penjualan', ['Attachment' => true]);
+    // }
 }

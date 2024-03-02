@@ -69,6 +69,6 @@ $routes->get('/laporan', 'Laporan::dataLaporan');
 $routes->get('/pdf/generate', 'PdfController::generate');
 $routes->get('/pdf/generate/(:num)', 'PdfController::generate$1');
 
-$routes->get('/laporanPenjualan', 'Laporan::dataPenjualan');
-$routes->get('/pdf/generate-penjualan', 'PdfController::generatePenjualan');
-$routes->get('/pdf/generate-penjualan/(:num)', 'PdfController::generatePenjualan$1');
+// $routes->get('/laporanPenjualan', 'Laporan::dataPenjualan');
+// $routes->get('/pdf/generate-penjualan', 'PdfController::generatePenjualan');
+// $routes->get('/pdf/generate-penjualan/(:num)', 'PdfController::generatePenjualan$1');

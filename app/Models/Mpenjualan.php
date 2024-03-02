@@ -98,19 +98,19 @@ class Mpenjualan extends Model
         }
     }
 
-    public function getLaporanPenjualan()
-    {
-        $penjualan = new Mpenjualan();
-        $penjualan->select('tbl_penjualan.*');
-        $penjualan->orderBy('tbl_penjualan.tgl_penjualan', 'DESC');
+    // public function getLaporanPenjualan()
+    // {
+    //     $penjualan = new Mpenjualan();
+    //     $penjualan->select('tbl_penjualan.*');
+    //     $penjualan->orderBy('tbl_penjualan.tgl_penjualan', 'DESC');
 
-        return $penjualan->findAll();
-    }
+    //     return $penjualan->findAll();
+    // }
 
-    public function getPdfPenjualan()
-    {
-        $penjualan = new Mpenjualan;
-        $queryPenjualan = $penjualan->query("CALL sp_lihat_laporan_penjualan()")->getResult();
-        return $queryPenjualan;
-    }
+    // public function getPdfPenjualan()
+    // {
+    //     $penjualan = new Mpenjualan;
+    //     $queryPenjualan = $penjualan->query("CALL sp_lihat_laporan_penjualan()")->getResult();
+    //     return $queryPenjualan;
+    // }
 }
